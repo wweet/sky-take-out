@@ -8,7 +8,6 @@ import com.sky.result.Result;
 import com.sky.service.CategoryService;
 import io.swagger.annotations.Api;
 import io.swagger.annotations.ApiOperation;
-import io.swagger.models.auth.In;
 import lombok.extern.slf4j.Slf4j;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.web.bind.annotation.*;
@@ -31,7 +30,7 @@ public class CategoryController {
      */
     @PostMapping
     @ApiOperation(value = "新增分类")
-    public Result add(CategoryDTO categoryDTO){
+    public Result save(@RequestBody CategoryDTO categoryDTO){
         log.info("新增分类:{}",categoryDTO);
         categoryService.save(categoryDTO);
         return Result.success();
@@ -55,7 +54,7 @@ public class CategoryController {
      * @param id
      * @return
      */
-    @PostMapping
+    @DeleteMapping
     @ApiOperation(value = "删除分类")
     public Result deleteById(Long id){
         log.info("删除分类{}",id);
@@ -70,7 +69,7 @@ public class CategoryController {
      */
     @PutMapping
     @ApiOperation("修改分类")
-    public Result update(CategoryDTO categoryDTO){
+    public Result update(@RequestBody CategoryDTO categoryDTO){
         log.info("修改分类:{}",categoryDTO);
         categoryService.update(categoryDTO);
         return Result.success();

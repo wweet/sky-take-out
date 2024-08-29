@@ -46,6 +46,7 @@ public class CategortServiceImpl implements CategoryService {
         category.setCreateTime(LocalDateTime.now());
         category.setUpdateTime(LocalDateTime.now());
         category.setCreateUser(BaseContext.getCurrentId());
+        category.setUpdateUser(BaseContext.getCurrentId());
         categoryMapper.insert(category);
     }
 
