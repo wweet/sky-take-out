@@ -32,12 +32,12 @@
         </where>
         order by d.create_time desc
     </select>
-    
+
     <update id="update">
         update dish
         <set>
             <if test="name != null">name = #{name},</if>
-            <if test="categoryId1 != null">category_id = #{categoryId},</if>
+            <if test="categoryId != null">category_id = #{categoryId},</if>
             <if test="price != null">price = #{price},</if>
             <if test="image != null">image = #{image},</if>
             <if test="description != null">description = #{description},</if>

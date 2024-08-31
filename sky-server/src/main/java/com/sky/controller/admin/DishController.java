@@ -103,10 +103,26 @@ public class DishController {
     @GetMapping("/list")
     @ApiOperation(value = "根据分类id查询菜品")
     public Result<List<Dish>> list(Long categoryId) {
-        log.info("根据分类id查询菜品:{}",categoryId);
-        List<Dish> dishes=dishService.list(categoryId);
+        log.info("根据分类id查询菜品:{}", categoryId);
+        List<Dish> dishes = dishService.list(categoryId);
         return Result.success(dishes);
     }
 
     //TODO 菜品状态修改后续完成
+
+    /**
+     * 启用禁用菜品
+     *
+     * @param status
+     * @param id
+     * @return
+     */
+    @PostMapping("/status/{status}")
+    @ApiOperation(value = "启用禁用菜品")
+    public Result StartOrStop(@PathVariable Integer status, Long id) {
+        log.info("启用禁用菜品:{},{}", status, id);
+        dishService.startOrStop(status, id);
+        return Result.success();
+    }
+
 }
