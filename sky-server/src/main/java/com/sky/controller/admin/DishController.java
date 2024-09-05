@@ -123,8 +123,6 @@ public class DishController {
         return Result.success(dishes);
     }
 
-    //TODO 菜品状态修改后续完成
-
     /**
      * 启用禁用菜品
      *
