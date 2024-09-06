@@ -14,6 +14,7 @@ import com.sky.service.OrderService;
 import com.sky.utils.WeChatPayUtil;
 import com.sky.vo.OrderPaymentVO;
 import com.sky.vo.OrderSubmitVO;
+import org.apache.commons.lang.RandomStringUtils;
 import org.springframework.beans.BeanUtils;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
@@ -23,6 +24,7 @@ import java.math.BigDecimal;
 import java.time.LocalDateTime;
 import java.util.ArrayList;
 import java.util.List;
+import java.util.Random;
 
 @Service
 public class OrderServiceImpl implements OrderService {
@@ -112,7 +114,15 @@ public class OrderServiceImpl implements OrderService {
 //                "苍穹外卖订单", //商品描述
 //                user.getOpenid() //微信用户的openid
 //        );
+        String timeStamp = String.valueOf(System.currentTimeMillis() / 1000);
+        String nonceStr = RandomStringUtils.randomNumeric(32);
         JSONObject jsonObject = new JSONObject();
+        jsonObject.put("timeStamp", timeStamp);
+        jsonObject.put("nonceStr", nonceStr);
+        jsonObject.put("package", "prepay_id=" + 12345678);
+        jsonObject.put("signType","RSA");
+        jsonObject.put("paySign","ok");
+
 
         if (jsonObject.getString("code") != null && jsonObject.getString("code").equals("ORDERPAID")) {
             throw new OrderBusinessException("该订单已支付");
