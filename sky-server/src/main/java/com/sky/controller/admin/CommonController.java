@@ -40,7 +40,7 @@ public class CommonController {
         try {
             String originalFilename = file.getOriginalFilename();
             String substring = originalFilename.substring(originalFilename.lastIndexOf("."));
-            String objectName = UUID.randomUUID().toString() + substring;
+            String objectName = UUID.randomUUID() + substring;
             String uploadPath = aliOssUtil.upload(file.getBytes(), objectName);
             return Result.success(uploadPath);
         } catch (IOException e) {
