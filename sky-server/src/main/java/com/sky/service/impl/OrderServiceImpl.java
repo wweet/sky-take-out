@@ -75,8 +75,8 @@ public class OrderServiceImpl implements OrderService {
         if (addressBook == null) {
             throw new AddressBookBusinessException(MessageConstant.ADDRESS_BOOK_IS_NULL);
         }
-        //TODO 后续可能要修改调用百度地图
-        //checkOutOfRange(addressBook.getCityName() + addressBook.getDistrictName() + addressBook + addressBook.getDetail());
+
+        checkOutOfRange(addressBook.getCityName() + addressBook.getDistrictName() + addressBook.getDistrictName() + addressBook.getDetail());
 
         Long userId = BaseContext.getCurrentId();
         ShoppingCart shoppingCart = new ShoppingCart();
